@@ -6,8 +6,8 @@ configuration:
   enablePopovers: true
   analytics:
     provider: plausible
-  locale: en-US
-  baseUrl: TEJARATONEJAT.IR
+  locale: fa-IR
+  baseUrl: abo-asadi.github.io/tejaratonejat
   ignorePatterns:
     - private
     - templates
@@ -102,6 +102,23 @@ plugins:
     enabled: true
   - source: github:quartz-community/explicit-publish
     enabled: false
+  - source: github:quartz-community/unlisted-pages
+    enabled: true
+    options: {}
+    order: 45
+  - source: github:quartz-community/encrypted-pages
+    enabled: true
+    options:
+      iterations: 600000
+      passwordField: password
+      unlistWhenEncrypted: false
+      outputPath: static/encryptedContentIndex.json
+  - source: github:quartz-community/stacked-pages
+    enabled: false
+    layout:
+      position: afterBody
+      priority: 50
+      display: all
   - source: github:quartz-community/alias-redirects
     enabled: true
   - source: github:quartz-community/content-index
@@ -196,8 +213,8 @@ plugins:
     enabled: true
     options:
       links:
-        پیام‌رسان بله: https://web.bale.ai/tejaratonejat
-        پیام‌رسان ایتا: https://web.eitaa.ir/tejaratonejat
+        پیام‌رسان بله: https://web.bale.ai/chat?uid=5347974684
+        پیام‌رسان ایتا: https://web.eitaa.com/#@tejaratonejat
   - source: github:quartz-community/recent-notes
     enabled: false
   - source: github:quartz-community/spacer
@@ -228,28 +245,6 @@ plugins:
     layout:
       position: beforeBody
       priority: 15
-      display: all
-  - source: github:quartz-community/unlisted-pages
-    enabled: true
-    options: {}
-    order: 45
-  - source: github:quartz-community/encrypted-pages
-    enabled: true
-    options:
-      iterations: 600000
-      passwordField: password
-      unlistWhenEncrypted: false
-      outputPath: static/encryptedContentIndex.json
-    order: 900
-    layout:
-      position: body
-      priority: 100
-      display: all
-  - source: github:quartz-community/stacked-pages
-    enabled: false
-    layout:
-      position: afterBody
-      priority: 50
       display: all
 layout:
   groups:
