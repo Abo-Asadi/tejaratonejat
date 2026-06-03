@@ -3,86 +3,86 @@ import { Translation } from "./definition"
 export default {
   propertyDefaults: {
     title: "بدون عنوان",
-    description: "توضیح خاصی اضافه نشده است",
+    description: "توضیحی ثبت نشده است",
   },
   direction: "rtl" as const,
   components: {
     callout: {
       note: "یادداشت",
-      abstract: "چکیده",
+      abstract: "خلاصه",
       info: "اطلاعات",
-      todo: "اقدام",
+      todo: "کار",
       tip: "نکته",
-      success: "تیک",
-      question: "سؤال",
+      success: "موفقیت",
+      question: "پرسش",
       warning: "هشدار",
-      failure: "شکست",
+      failure: "ناموفق",
       danger: "خطر",
-      bug: "باگ",
-      example: "مثال",
-      quote: "نقل قول",
+      bug: "اشکال",
+      example: "نمونه",
+      quote: "نقل‌قول",
     },
     backlinks: {
-      title: "بک‌لینک‌ها",
-      noBacklinksFound: "بدون بک‌لینک",
+      title: "پیوندهای بازگشتی",
+      noBacklinksFound: "پیوند بازگشتی یافت نشد",
     },
     themeToggle: {
-      lightMode: "حالت روشن",
-      darkMode: "حالت تاریک",
+      lightMode: "پوسته روشن",
+      darkMode: "پوسته تاریک",
     },
     readerMode: {
-      title: "حالت خواندن",
+      title: "حالت مطالعه",
     },
     explorer: {
-      title: "مطالب",
+      title: "فهرست مطالب",
     },
     footer: {
-      createdWith: "ساخته شده با",
+      createdWith: "ساخته‌شده با",
     },
     graph: {
-      title: "نمای گراف",
+      title: "نقشه مطالب",
     },
     recentNotes: {
-      title: "یادداشت‌های اخیر",
-      seeRemainingMore: ({ remaining }) => `${remaining} یادداشت دیگر →`,
+      title: "یادداشت‌های تازه",
+      seeRemainingMore: ({ remaining }) => `مشاهدهٔ ${remaining} مورد دیگر ←`,
     },
     transcludes: {
-      transcludeOf: ({ targetSlug }) => `از ${targetSlug}`,
-      linkToOriginal: "پیوند به اصلی",
+      transcludeOf: ({ targetSlug }) => `گنجانده‌شده از ${targetSlug}`,
+      linkToOriginal: "مشاهدهٔ متن اصلی",
     },
     search: {
       title: "جستجو",
-      searchBarPlaceholder: "مطلبی را جستجو کنید",
+      searchBarPlaceholder: "در مطالب جستجو کنید…",
     },
     tableOfContents: {
-      title: "فهرست",
+      title: "فهرست عناوین",
     },
     contentMeta: {
-      readingTime: ({ minutes }) => `زمان تقریبی مطالعه: ${minutes} دقیقه`,
+      readingTime: ({ minutes }) => `حدود ${minutes} دقیقه مطالعه`,
     },
   },
   pages: {
     rss: {
-      recentNotes: "یادداشت‌های اخیر",
+      recentNotes: "یادداشت‌های تازه",
       lastFewNotes: ({ count }) => `${count} یادداشت اخیر`,
     },
     error: {
-      title: "یافت نشد",
-      notFound: "این صفحه یا خصوصی است یا وجود ندارد",
-      home: "بازگشت به صفحه اصلی",
+      title: "صفحه یافت نشد",
+      notFound: "این صفحه وجود ندارد یا در دسترس نیست.",
+      home: "بازگشت به صفحهٔ اصلی",
     },
     folderContent: {
       folder: "پوشه",
       itemsUnderFolder: ({ count }) =>
-        count === 1 ? ".یک مطلب در این پوشه است" : `${count} مطلب در این پوشه است.`,
+        count === 1 ? "۱ مطلب در این پوشه" : `${count} مطلب در این پوشه`,
     },
     tagContent: {
       tag: "برچسب",
       tagIndex: "فهرست برچسب‌ها",
       itemsUnderTag: ({ count }) =>
-        count === 1 ? "یک مطلب با این برچسب" : `${count} مطلب با این برچسب.`,
-      showingFirst: ({ count }) => `در حال نمایش ${count} برچسب.`,
-      totalTags: ({ count }) => `${count} برچسب یافت شد.`,
+        count === 1 ? "۱ مطلب با این برچسب" : `${count} مطلب با این برچسب`,
+      showingFirst: ({ count }) => `نمایش ${count} برچسب اول`,
+      totalTags: ({ count }) => `${count} برچسب`,
     },
   },
 } as const satisfies Translation
