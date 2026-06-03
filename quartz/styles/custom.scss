@@ -2,33 +2,71 @@
 
 // ——— تجارت و نجات — پوستهٔ فارسی ———
 
+:root {
+  --paper: color-mix(in srgb, var(--light) 88%, white);
+  --paper-soft: color-mix(in srgb, var(--light) 92%, var(--lightgray));
+  --paper-edge: color-mix(in srgb, var(--secondary) 12%, var(--lightgray));
+  --ink: color-mix(in srgb, var(--dark) 88%, var(--darkgray));
+  --accent-warm: color-mix(in srgb, var(--tertiary) 70%, var(--secondary));
+  --shadow-soft: 0 18px 40px rgba(26, 85, 96, 0.1);
+  --shadow-lift: 0 8px 20px rgba(26, 85, 96, 0.08);
+  --ring-soft: color-mix(in srgb, var(--secondary) 22%, transparent);
+}
+
 // پس‌زمینهٔ ملایم
 body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  background: linear-gradient(
-    160deg,
-    var(--light) 0%,
-    color-mix(in srgb, var(--secondary) 7%, var(--light)) 45%,
-    var(--light) 100%
-  );
+  background-color: var(--light);
+  background-image:
+    radial-gradient(
+      1200px 700px at 82% -10%,
+      color-mix(in srgb, var(--tertiary) 18%, transparent) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      900px 600px at 0% 15%,
+      color-mix(in srgb, var(--secondary) 12%, transparent) 0%,
+      transparent 55%
+    ),
+    linear-gradient(
+      180deg,
+      var(--light) 0%,
+      color-mix(in srgb, var(--paper) 70%, white) 40%,
+      color-mix(in srgb, var(--secondary) 8%, var(--light)) 100%
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.02) 0px,
+      rgba(0, 0, 0, 0.02) 1px,
+      transparent 1px,
+      transparent 5px
+    );
   background-attachment: fixed;
 }
 
 html[dir="rtl"] {
   body {
+    direction: rtl;
+    text-align: right;
     font-feature-settings: "ss01", "ss02";
     letter-spacing: 0.01em;
-    line-height: 1.85;
+    line-height: 1.9;
+  }
+
+  article {
+    text-align: right;
+    text-justify: inter-word;
   }
 
   blockquote {
     border-left: none;
-    border-right: 3px solid var(--secondary);
+    border-right: 4px solid color-mix(in srgb, var(--secondary) 65%, var(--tertiary));
     padding-left: 0;
     padding-right: 1.25rem;
     border-radius: 0 10px 10px 0;
-    background: color-mix(in srgb, var(--highlight) 60%, transparent);
+    background: color-mix(in srgb, var(--highlight) 70%, transparent);
+    box-shadow: 0 6px 16px rgba(26, 85, 96, 0.08);
   }
 
   article li:has(> input[type="checkbox"]) {
@@ -80,12 +118,72 @@ html[dir="rtl"] {
   }
 }
 
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes soften-in {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .page-header,
+  .page .center,
+  .sidebar {
+    animation: fade-up 0.6s ease both;
+  }
+
+  .section-li {
+    animation: soften-in 0.5s ease both;
+    animation-delay: var(--stagger-delay, 0ms);
+  }
+
+  .section-li:nth-child(1) {
+    --stagger-delay: 0ms;
+  }
+  .section-li:nth-child(2) {
+    --stagger-delay: 60ms;
+  }
+  .section-li:nth-child(3) {
+    --stagger-delay: 120ms;
+  }
+  .section-li:nth-child(4) {
+    --stagger-delay: 180ms;
+  }
+  .section-li:nth-child(5) {
+    --stagger-delay: 240ms;
+  }
+  .section-li:nth-child(6) {
+    --stagger-delay: 300ms;
+  }
+  .section-li:nth-child(7) {
+    --stagger-delay: 360ms;
+  }
+  .section-li:nth-child(8) {
+    --stagger-delay: 420ms;
+  }
+}
+
 // نوار کناری
 .page > #quartz-body .sidebar {
   padding-top: 3.5rem;
 
   &.left {
-    background: color-mix(in srgb, var(--light) 88%, transparent);
+    background: color-mix(in srgb, var(--paper) 92%, transparent);
     backdrop-filter: blur(10px);
     border-inline-end: 1px solid color-mix(in srgb, var(--secondary) 12%, var(--lightgray));
     box-shadow: inset -1px 0 0 color-mix(in srgb, var(--light) 50%, white);
@@ -98,13 +196,11 @@ html[dir="rtl"] .page > #quartz-body .sidebar.left {
 
 // فهرست مطالب (Explorer)
 .explorer {
-  background: color-mix(in srgb, var(--light) 70%, white);
-  border: 1px solid color-mix(in srgb, var(--secondary) 15%, var(--lightgray));
+  background: linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%);
+  border: 1px solid var(--paper-edge);
   border-radius: 14px;
   padding: 0.85rem 0.75rem 1rem;
-  box-shadow:
-    0 2px 8px rgba(26, 85, 96, 0.06),
-    0 8px 24px rgba(26, 85, 96, 0.04);
+  box-shadow: var(--shadow-lift);
 
   button.desktop-explorer h2,
   button.mobile-explorer {
@@ -131,7 +227,7 @@ html[dir="rtl"] .page > #quartz-body .sidebar.left {
       transform 0.15s ease;
 
     &:hover {
-      background: var(--highlight);
+      background: color-mix(in srgb, var(--secondary) 14%, var(--paper));
       transform: translateX(-2px);
     }
 
@@ -169,17 +265,17 @@ html[dir="rtl"] .explorer ul a:hover {
 
 .graph > .graph-outer {
   border-radius: 14px;
-  border: 1px solid color-mix(in srgb, var(--secondary) 15%, var(--lightgray));
-  box-shadow: 0 4px 16px rgba(26, 85, 96, 0.06);
+  border: 1px solid var(--paper-edge);
+  box-shadow: var(--shadow-lift);
   overflow: hidden;
 }
 
 // جستجو
 .search-button {
   border-radius: 12px !important;
-  border: 1px solid color-mix(in srgb, var(--secondary) 20%, var(--lightgray)) !important;
-  background: color-mix(in srgb, var(--light) 80%, white) !important;
-  box-shadow: 0 2px 8px rgba(26, 85, 96, 0.05);
+  border: 1px solid var(--paper-edge) !important;
+  background: color-mix(in srgb, var(--paper) 80%, white) !important;
+  box-shadow: var(--shadow-lift);
   transition:
     box-shadow 0.2s ease,
     border-color 0.2s ease;
@@ -197,14 +293,34 @@ html[dir="rtl"] .explorer ul a:hover {
   font-weight: 800;
   color: var(--secondary);
   letter-spacing: -0.02em;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.page-header {
+  margin-bottom: 1.25rem;
+}
+
+.page-header header {
+  background: linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%);
+  border: 1px solid var(--paper-edge);
+  border-radius: 14px;
+  padding: 0.65rem 0.95rem;
+  box-shadow: var(--shadow-lift);
+  backdrop-filter: blur(6px);
+}
+
+.page-header header h1 {
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
 }
 
 // محتوای اصلی
 .page {
   & article {
-    max-width: 46rem;
+    max-width: 47rem;
     margin-inline: auto;
-    font-size: 1.06rem;
+    font-size: 1.08rem;
+    color: var(--ink);
 
     & > h1 {
       font-size: 2.15rem;
@@ -212,8 +328,13 @@ html[dir="rtl"] .explorer ul a:hover {
       line-height: 1.4;
       margin-top: 0.25rem;
       padding-bottom: 0.85rem;
-      border-bottom: 3px solid color-mix(in srgb, var(--secondary) 35%, var(--highlight));
+      border-bottom: 3px solid color-mix(in srgb, var(--secondary) 30%, var(--accent-warm));
       color: var(--secondary);
+    }
+
+    & > p:first-of-type {
+      font-size: 1.12rem;
+      color: var(--dark);
     }
 
     p {
@@ -221,21 +342,56 @@ html[dir="rtl"] .explorer ul a:hover {
       margin-bottom: 0.9rem;
     }
 
+    h2,
+    h3 {
+      position: relative;
+      padding-bottom: 0.35rem;
+    }
+
+    h2::after,
+    h3::after {
+      content: "";
+      position: absolute;
+      inset-inline-start: 0;
+      bottom: 0;
+      width: 3.25rem;
+      height: 2px;
+      background: linear-gradient(90deg, var(--secondary), transparent);
+      opacity: 0.8;
+    }
+
     a.internal {
       border-radius: 6px;
-      padding: 0.05rem 0.4rem;
-      background: color-mix(in srgb, var(--highlight) 80%, transparent);
+      padding: 0.05rem 0.45rem;
+      background: color-mix(in srgb, var(--highlight) 75%, transparent);
+      border: 1px solid color-mix(in srgb, var(--secondary) 14%, transparent);
       transition:
         background-color 0.2s ease,
         color 0.2s ease;
     }
+
+    a:not(.internal):not([role="anchor"]) {
+      background-image: linear-gradient(
+        120deg,
+        color-mix(in srgb, var(--secondary) 18%, transparent),
+        color-mix(in srgb, var(--tertiary) 18%, transparent)
+      );
+      background-repeat: no-repeat;
+      background-size: 100% 0.2em;
+      background-position: 0 100%;
+      transition: background-size 0.2s ease, color 0.2s ease;
+    }
+
+    a:not(.internal):not([role="anchor"]):hover {
+      background-size: 100% 0.55em;
+    }
   }
 
   & .center {
-    background: color-mix(in srgb, var(--light) 75%, white);
-    border-radius: 16px;
-    border: 1px solid color-mix(in srgb, var(--secondary) 10%, var(--lightgray));
-    box-shadow: 0 8px 32px rgba(26, 85, 96, 0.06);
+    background: linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%);
+    border-radius: 18px;
+    border: 1px solid var(--paper-edge);
+    box-shadow: var(--shadow-soft);
     padding: 1.5rem 2rem 2.5rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
@@ -247,15 +403,84 @@ html[dir="rtl"] .explorer ul a:hover {
     padding: 1rem;
     border-radius: 12px;
   }
+
+  .page-header header {
+    padding: 0.55rem 0.75rem;
+  }
+}
+
+.section-ul {
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0 2rem;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.section-li {
+  margin: 0;
+}
+
+.section {
+  background: linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%);
+  border: 1px solid var(--paper-edge);
+  border-radius: 14px;
+  padding: 0.95rem 1.15rem;
+  box-shadow: var(--shadow-lift);
+  display: grid;
+  gap: 0.35rem;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.section:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-soft);
+  border-color: color-mix(in srgb, var(--secondary) 20%, var(--paper-edge));
+}
+
+.section .meta {
+  font-size: 0.82rem;
+  color: var(--gray);
+  margin: 0;
+}
+
+.section .desc h3 a {
+  color: var(--secondary);
+  font-weight: 700;
+}
+
+.section .tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0;
+  margin: 0.2rem 0 0;
+}
+
+.section .tags .tag-link {
+  background: color-mix(in srgb, var(--secondary) 12%, var(--paper));
+  border: 1px solid color-mix(in srgb, var(--secondary) 20%, var(--paper-edge));
+  color: var(--secondary);
+  border-radius: 999px;
+  padding: 0.12rem 0.55rem;
+  font-size: 0.78rem;
+}
+
+.section .tags .tag-link:hover {
+  background: color-mix(in srgb, var(--secondary) 20%, var(--paper));
 }
 
 // فهرست عناوین
 .toc {
   border-radius: 14px;
   padding: 0.85rem 1rem;
-  background: color-mix(in srgb, var(--highlight) 50%, transparent);
-  border: 1px solid color-mix(in srgb, var(--secondary) 12%, var(--lightgray));
-  box-shadow: 0 2px 12px rgba(26, 85, 96, 0.05);
+  background: linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%);
+  border: 1px solid var(--paper-edge);
+  box-shadow: var(--shadow-lift);
 
   h3 {
     color: var(--secondary);
@@ -272,7 +497,7 @@ html[dir="rtl"] .explorer ul a:hover {
 // کد
 pre {
   border-radius: 12px;
-  border: 1px solid var(--lightgray);
+  border: 1px solid var(--paper-edge);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
   direction: ltr;
   text-align: left;
@@ -281,6 +506,14 @@ pre {
 code {
   font-family: var(--bodyFont), var(--codeFont);
   border-radius: 5px;
+}
+
+img,
+video,
+audio {
+  box-shadow: var(--shadow-lift);
+  border: 1px solid var(--paper-edge);
+  background: var(--paper);
 }
 
 // پاورقی — بدون Quartz، فقط پیوندها
@@ -347,6 +580,10 @@ footer {
     color: transparent;
   }
 
+  article > p:first-of-type {
+    text-align: center;
+  }
+
   .center {
     border: none;
     box-shadow: none;
@@ -361,22 +598,48 @@ footer {
 }
 
 :root[saved-theme="dark"] {
+  --paper: color-mix(in srgb, var(--light) 86%, black);
+  --paper-soft: color-mix(in srgb, var(--light) 82%, black);
+  --paper-edge: color-mix(in srgb, var(--secondary) 18%, var(--lightgray));
+  --ink: color-mix(in srgb, var(--dark) 85%, var(--darkgray));
+  --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.3);
+  --shadow-lift: 0 8px 20px rgba(0, 0, 0, 0.25);
+
   body {
-    background: linear-gradient(
-      160deg,
-      var(--light) 0%,
-      color-mix(in srgb, var(--secondary) 12%, var(--light)) 50%,
-      var(--light) 100%
-    );
+    background-color: var(--light);
+    background-image:
+      radial-gradient(
+        1200px 700px at 82% -10%,
+        color-mix(in srgb, var(--tertiary) 14%, transparent) 0%,
+        transparent 60%
+      ),
+      radial-gradient(
+        900px 600px at 0% 15%,
+        color-mix(in srgb, var(--secondary) 12%, transparent) 0%,
+        transparent 55%
+      ),
+      linear-gradient(
+        180deg,
+        var(--light) 0%,
+        color-mix(in srgb, var(--paper) 70%, black) 40%,
+        color-mix(in srgb, var(--secondary) 12%, var(--light)) 100%
+      ),
+      repeating-linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.02) 0px,
+        rgba(255, 255, 255, 0.02) 1px,
+        transparent 1px,
+        transparent 5px
+      );
   }
 
   .explorer,
   .page .center,
   .toc {
-    background: color-mix(in srgb, var(--light) 85%, black);
+    background: linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%);
   }
 
   footer ul a {
-    background: color-mix(in srgb, var(--secondary) 15%, var(--light));
+    background: color-mix(in srgb, var(--secondary) 18%, var(--paper));
   }
 }
