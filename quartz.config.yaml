@@ -152,6 +152,10 @@ plugins:
     enabled: true
   - source: github:quartz-community/explorer
     enabled: true
+    options:
+      title: فهرست مطالب
+      folderClickBehavior: collapse
+      folderDefaultState: collapsed
     layout:
       position: left
       priority: 50
