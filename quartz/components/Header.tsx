@@ -7,15 +7,17 @@ const Header: QuartzComponent = ({ children }: QuartzComponentProps) => {
 Header.css = `
 header {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
-  margin: 2rem 0;
-  gap: 1.5rem;
+  justify-content: space-between;
+  gap: 0.75rem 1rem;
+  margin: 0;
 }
 
 header h1 {
   margin: 0;
-  flex: auto;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 `
 

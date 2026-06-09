@@ -27,29 +27,29 @@ configuration:
         weights: [400, 500, 600]
         includeItalic: true
       code:
-        name: Vazirmatn
+        name: IBM Plex Mono
         weights: [400, 500]
     colors:
       lightMode:
-        light: "#faf8f5"
-        lightgray: "#e8e4de"
-        gray: "#9c958c"
-        darkgray: "#3d3832"
-        dark: "#1f1c18"
-        secondary: "#1a5560"
-        tertiary: "#b8734a"
-        highlight: rgba(26, 85, 96, 0.1)
-        textHighlight: rgba(255, 212, 120, 0.45)
+        light: "#f6f8f5"
+        lightgray: "#dde7e1"
+        gray: "#87948f"
+        darkgray: "#38433f"
+        dark: "#171d1a"
+        secondary: "#1f6f73"
+        tertiary: "#c6575f"
+        highlight: rgba(31, 111, 115, 0.1)
+        textHighlight: rgba(198, 87, 95, 0.24)
       darkMode:
-        light: "#141312"
-        lightgray: "#2a2724"
-        gray: "#7a746c"
-        darkgray: "#e8e4df"
-        dark: "#f5f3f0"
-        secondary: "#6eb8c4"
-        tertiary: "#d4a574"
-        highlight: rgba(110, 184, 196, 0.12)
-        textHighlight: rgba(212, 165, 116, 0.35)
+        light: "#111615"
+        lightgray: "#222b28"
+        gray: "#7a8983"
+        darkgray: "#e5eee9"
+        dark: "#f5faf7"
+        secondary: "#88d3d1"
+        tertiary: "#e18b95"
+        highlight: rgba(136, 211, 209, 0.14)
+        textHighlight: rgba(225, 139, 149, 0.26)
 plugins:
   - source: github:quartz-community/created-modified-date
     enabled: true
