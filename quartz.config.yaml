@@ -7,7 +7,7 @@ configuration:
   analytics:
     provider: plausible
   locale: fa-IR
-  baseUrl: abo-asadi.github.io/tejaratonejat
+  baseUrl: TEJARATONEJAT.IR
   ignorePatterns:
     - private
     - templates
